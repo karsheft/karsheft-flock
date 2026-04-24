@@ -8,7 +8,13 @@ else:
 
 import tomli_w
 
-LOCKFILE_IS_READ_ONLY_AT_INSTALL_TIME: bool = True
+def _enforce_read_only_at_install_time(path: Path) -> None:
+    """Raise RuntimeError if called during install with a path that would overwrite the lockfile."""
+    raise RuntimeError(
+        f"Refusing to write to lockfile at install time: {path}\n"
+        "The lockfile (flock.lock) is read-only during 'flock install'. "
+        "Run 'flock resolve' to regenerate it."
+    )
 
 
 def read_lockfile(path: Path) -> dict:

@@ -5,12 +5,14 @@ from flock.lockfile import (
     read_lockfile,
     write_lockfile,
     assert_lockfile_not_modified,
-    LOCKFILE_IS_READ_ONLY_AT_INSTALL_TIME,
+    _enforce_read_only_at_install_time,
 )
 
 
-def test_lockfile_constant():
-    assert LOCKFILE_IS_READ_ONLY_AT_INSTALL_TIME is True
+def test_enforce_read_only_at_install_time(tmp_path):
+    lockfile_path = tmp_path / "flock.lock"
+    with pytest.raises(RuntimeError, match="read-only during"):
+        _enforce_read_only_at_install_time(lockfile_path)
 
 
 def test_write_and_read_lockfile_roundtrip(tmp_path):

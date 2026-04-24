@@ -68,7 +68,7 @@ def resolve(packages: tuple[str, ...], verify_level: str, mirror: str) -> None:
     except Exception as e:
         raise click.ClickException(f"Resolution failed: {e}")
 
-    timestamp = datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    timestamp = datetime.now(tz=timezone.utc).isoformat().replace("+00:00", "Z")
     lockfile_data = {
         "meta": {
             "generated_by": "flock resolve",
