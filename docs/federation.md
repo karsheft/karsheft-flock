@@ -164,7 +164,7 @@ namespaces = ["pool/main/a-m/"]
 [[replica]]
 url = "https://eu-west.example.com/debian"
 region = "eu-west"
-signing_key_fingerprint = "C4388DAFF0DFE558902123E33GG4117ECadc36DA"
+signing_key_fingerprint = "C4388DAFF0DFE558902123E33AB4117EC8ADC36D"
 namespaces = ["pool/main/n-z/"]
 ```
 
